@@ -1,4 +1,5 @@
 // src/App.jsx
+import { useState } from 'react';
 import '../assets/css/temperature.css';
 
 const TemperatureDisplay = ({ temp }) => {
@@ -14,7 +15,19 @@ const TemperatureDisplay = ({ temp }) => {
 };
 
 function App() {
-  return <TemperatureDisplay temp={32} />;
+  const [temp, setTemp] = useState('');
+
+  return (
+    <div className="app">
+      <h2>Temperature Checker</h2>
+      <input
+        type="number"
+        placeholder="Enter temperature (°C)"
+        onChange={(e) => setTemp(e.target.value)}
+      />
+      {temp !== '' && <TemperatureDisplay temp={Number(temp)} />}
+    </div>
+  );
 }
 
 export default App;
